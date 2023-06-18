@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'com.modrinth.minotaur' version '2.+'
+}
+
+defaultTasks 'build'
+
+def buildNum = System.getenv('GITHUB_RUN_NUMBER') ?: 'SNAPSHOT'
+project.group = 'net.pl3x.advancementprogress'
+project.version = "$minecraftVersion-$buildNum"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+}
+
+dependencies {
+    compileOnly("io.papermc.paper:paper-api:$minecraftVersion-R0.1-SNAPSHOT")
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.release.set(17)
+}
+
+processResources {
+    filteringCharset = 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand('version': project.version)
+    }
+}
+
+modrinth {
+    autoAddDependsOn = false
+    token = System.getenv('MODRINTH_TOKEN')
+    projectId = 'advancement-progress'
+    versionName = "${project.version}"
+    versionNumber = "${project.version}"
+    versionType = 'release'
+    uploadFile = rootProject.layout.buildDirectory.file("libs/${rootProject.name}-${project.version}.jar").get()
+    gameVersions.addAll(["${minecraftVersion}"])
+    loaders.addAll(['paper', 'purpur'])
+    changelog = System.getenv('COMMIT_MESSAGE')
+}

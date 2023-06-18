@@ -1,0 +1,47 @@
+name: "AdvancementProgress"
+main: "net.pl3x.advancementprogress.AdvancementProgressPlugin"
+version: "${version}"
+api-version: "1.13"
+authors: [ "BillyGalbreath" ]
+description: "Shows advancement progress"
+website: "https://modrinth.com/plugin/advancement-progress"
+
+commands:
+  listbiomes:
+    description: See progress of visited biomes
+    permission: command.listbiomes
+    usage: /<command>
+    aliases:
+      - biomes
+  listbreeds:
+    description: See progress of animals bred
+    permission: command.listbreeds
+    usage: /<command>
+    aliases:
+      - breeds
+  listfoods:
+    description: See progress of foods eaten
+    permission: command.listfoods
+    usage: /<command>
+    aliases:
+      - foods
+  listmobs:
+    description: See progress of mobs killed
+    permission: command.listmobs
+    usage: /<command>
+    aliases:
+      - mobs
+
+permissions:
+  command.listbiomes:
+    description: Allows to see progress of visited biomes
+    default: op
+  command.listbreeds:
+    description: Allows to see progress of animals bred
+    default: op
+  command.listfoods:
+    description: Allows to see progress of foods eaten
+    default: op
+  command.listmobs:
+    description: Allows to see progress of mobs killed
+    default: op

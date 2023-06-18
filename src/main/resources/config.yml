@@ -1,0 +1,3 @@
+advancement-progress: "<yellow>Advancement Progress for</yellow> <u><gold><advancement></gold></u>\n<list>"
+advancement-hover: "<b><gold><title></gold></b>\n<dark_purple><st>   </st>[<gray><complete><yellow>/</yellow><total></gray>]<st>             </st></dark_purple>\n<dark_aqua><description></dark_aqua>"
+list-separator: "<gray>, </gray>"
